@@ -20,11 +20,16 @@ public class ApplicationUserController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/newuser")
-    public RedirectView makeNewUser(String username, String passwordhere){
+    public RedirectView makeNewUser(String username,
+                                    String passwordhere,
+                                    String firstName,
+                                    String lastName,
+                                    String dateOfBirth,
+                                    String bio){
 
         passwordhere = passwordEncoder.encode(passwordhere);
 
-        ApplicationUser newUser = new ApplicationUser(username, passwordhere);
+        ApplicationUser newUser = new ApplicationUser(username, passwordhere, firstName, lastName, dateOfBirth, bio);
 
         applicationUserRepository.save(newUser);
 

@@ -18,26 +18,46 @@ public class ApplicationUser implements UserDetails {
     long id;
 
     String username;
-    String password;
+    String passwordhere;
+    String firstName;
+    String lastName;
+    String dateOfBirth;
+    String bio;
+
 
     public ApplicationUser(){};// don't forget to do this
-    public ApplicationUser(String username, String password){
+    public ApplicationUser(String username, String passwordhere, String firstName, String lastName, String dateOfBirth, String bio){
         this.username = username;
-        this.password = password;
+        this.passwordhere = passwordhere;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.bio = bio;
     }
+
+    public long getId(){return id;}
+    public void setId(long id){this.id= id;}
+
+    public String getUsername(){ return username; }
+    public String getPassword(){ return passwordhere; }
+    public void setPassword(String passwordhere){this.passwordhere = passwordhere;}
+
+    
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+
+    public String getLastName() { return lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+
+    public String getDateOfBirth() { return dateOfBirth; }
+    public void setDateOfBirth(String dateOfBirth) { this.dateOfBirth = dateOfBirth; }
+
+    public String getBio() { return bio; }
+    public void setBio(String bio) { this.bio = bio; }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){
         return null;
-    }
-    @Override
-    public String getPassword(){
-        return password;
-    }
-
-    @Override
-    public String getUsername(){
-        return username;
     }
 
     @Override

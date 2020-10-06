@@ -10,15 +10,10 @@ public class HomeController {
         return "home";
     }
 
-//    @GetMapping("/login")
-//    public String showLogin(){
-//        return "login";
-//    }
-//
-//    @GetMapping("/signup")
-//    public String showSignup(){
-//        return "/signup";
-//    }
+    @GetMapping("/newuser")
+    public String showSignup(){
+        return "/signup";
+    }
 
 
 
