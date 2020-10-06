@@ -42,7 +42,7 @@ public class ApplicationUser implements UserDetails {
     public String getPassword(){ return passwordhere; }
     public void setPassword(String passwordhere){this.passwordhere = passwordhere;}
 
-    
+
     public String getFirstName() { return firstName; }
     public void setFirstName(String firstName) { this.firstName = firstName; }
 

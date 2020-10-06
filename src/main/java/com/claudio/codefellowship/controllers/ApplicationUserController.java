@@ -19,7 +19,7 @@ public class ApplicationUserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @PostMapping("/newuser")
+    @PostMapping("/signup")
     public RedirectView makeNewUser(String username,
                                     String passwordhere,
                                     String firstName,
@@ -38,7 +38,7 @@ public class ApplicationUserController {
     }
 
     @GetMapping("/login")
-    public String login(){
+    public String showlogin(){
         return"login";
     }
 

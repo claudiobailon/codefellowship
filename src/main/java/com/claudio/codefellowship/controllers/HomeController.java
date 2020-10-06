@@ -10,7 +10,7 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/newuser")
+    @GetMapping("/signup")
     public String showSignup(){
         return "/signup";
     }
