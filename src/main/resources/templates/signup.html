@@ -5,16 +5,17 @@
     <title>Sign up</title>
 </head>
 <body>
+<div th:replace="fragments/nav :: nav"></div>
 
     <h1>Sign up!</h1>
     <form action ="/signup" method = "POST">
         Username: <input type = "text" name ="username"><br>
         Password: <input type = "password" name ="passwordhere"><br>
-        First Name: <input type = "text" name ="fistName"><br>
+        First Name: <input type = "text" name ="firstName"><br>
         Last Name: <input type = "text" name ="lastName"><br>
         Date of Birth:<input type = "date" name ="dateOfBirth"><br>
         Bio: <input type = "text" name ="bio"><br> <!-- TODO: refactor with textarea -->
-        <input type="submit" value = "signup">
+        <input type="submit">
     </form>
 </body>
 </html>

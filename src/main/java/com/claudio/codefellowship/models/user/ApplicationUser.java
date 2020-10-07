@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Date;
 import java.util.Collection;
 
 @Entity
@@ -21,12 +22,12 @@ public class ApplicationUser implements UserDetails {
     String passwordhere;
     String firstName;
     String lastName;
-    String dateOfBirth;
+    Date dateOfBirth;
     String bio;
 
 
-    public ApplicationUser(){};// don't forget to do this
-    public ApplicationUser(String username, String passwordhere, String firstName, String lastName, String dateOfBirth, String bio){
+    public ApplicationUser(){} // don't forget to do this
+    public ApplicationUser(String username, String passwordhere, String firstName, String lastName, Date dateOfBirth, String bio){
         this.username = username;
         this.passwordhere = passwordhere;
         this.firstName = firstName;
@@ -38,7 +39,10 @@ public class ApplicationUser implements UserDetails {
     public long getId(){return id;}
     public void setId(long id){this.id= id;}
 
+    @Override
     public String getUsername(){ return username; }
+
+    @Override
     public String getPassword(){ return passwordhere; }
     public void setPassword(String passwordhere){this.passwordhere = passwordhere;}
 
@@ -49,8 +53,8 @@ public class ApplicationUser implements UserDetails {
     public String getLastName() { return lastName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
 
-    public String getDateOfBirth() { return dateOfBirth; }
-    public void setDateOfBirth(String dateOfBirth) { this.dateOfBirth = dateOfBirth; }
+    public Date getDateOfBirth() { return dateOfBirth; }
+    public void setDateOfBirth(Date dateOfBirth) { this.dateOfBirth = dateOfBirth; }
 
     public String getBio() { return bio; }
     public void setBio(String bio) { this.bio = bio; }

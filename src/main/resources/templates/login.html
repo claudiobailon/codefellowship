@@ -5,12 +5,13 @@
     <title>Login</title>
 </head>
 <body>
+<div th:replace="fragments/nav :: nav"></div>
 
 <h1>Login</h1>
 <form action ="/login" method = "POST">
     Username: <input type = "text" name ="username">
     Password: <input type = "password" name ="passwordhere">
-    <input type="submit" name="login">
+    <input type="submit">
 </form>
 </body>
 </html>
