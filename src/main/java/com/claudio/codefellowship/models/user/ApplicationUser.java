@@ -1,12 +1,15 @@
 package com.claudio.codefellowship.models.user;
 
 
+import com.claudio.codefellowship.models.post.Post;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -25,6 +28,8 @@ public class ApplicationUser implements UserDetails {
     String bio;
     String profileImg = "https://www.pngfind.com/pngs/m/93-938050_png-file-transparent-white-user-icon-png-download.png";
 
+    @OneToMany(mappedBy = "applicationUser", cascade = CascadeType.ALL)
+    List<Post> posts = new ArrayList<>();
 
     public ApplicationUser(){} // don't forget to do this
     public ApplicationUser(String username, String password, String firstName, String lastName, Date dateOfBirth, String bio, String profileImg){
@@ -63,6 +68,8 @@ public class ApplicationUser implements UserDetails {
 
     public String getProfileImg(){return profileImg;}
     public void setProfileImg(String profileImg){this.profileImg = profileImg;}
+
+    public List<Post> getPosts(){return posts;}
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){

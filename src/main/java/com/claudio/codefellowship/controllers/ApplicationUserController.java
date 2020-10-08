@@ -69,6 +69,4 @@ public class ApplicationUserController {
         m.addAttribute("principal", principal);
         return "profile";
     }
-
-
 }

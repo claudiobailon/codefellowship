@@ -13,5 +13,13 @@
 <p th:text="'Date of Birth: ' + ${user.getDateOfBirth()}"></p>
 <p th:text="'Bio: ' + ${user.getBio()}"></p>
 
+<form action="/post" method="POST">
+    <legend>What's on your mind?</legend>
+    <input type="text" name="body">
+    <input type="submit">
+</form>
+
+<div th:replace="fragments/post :: post"></div>
+
 </body>
 </html>
