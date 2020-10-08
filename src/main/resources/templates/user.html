@@ -7,6 +7,10 @@
 <body>
 <div th:replace="fragments/nav :: nav"></div>
 
+<img th:src="${user.getProfileImgUrl()}">
+<p th:text="'username: ' + ${user.getUsername()}"></p>
+<p th:if="${user.getFullName()} != ''" th:text="'name: ' +${user.getFullname()}"></p>
+<p th:if="${user.getBio()} != ''" th:text="'bio: ' + ${user.getBio()}"></p>
 
 </body>
 </html>

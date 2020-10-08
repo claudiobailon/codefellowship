@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+
+<img th:src="${user.getProfileImg()}">
+<p th:text="'Username: ' + ${user.getUsername()}"></p>
+<p th:text="'Name: ' + ${user.getFirstName()} + '' + ${user.getLastName()}"></p>
+<p th:text="'Date of Birth: ' + ${user.getDateOfBirth()}"></p>
+<p th:text="'Bio: ' + ${user.getBio()}"></p>
+
+</body>
+</html>
