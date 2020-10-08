@@ -7,7 +7,7 @@
 <body>
 <div th:replace="fragments/nav :: nav"></div>
 
-<img th:src="${user.getProfileImg()}">
+<img src="https://www.pngfind.com/pngs/m/93-938050_png-file-transparent-white-user-icon-png-download.png" alt="Profile Pic" width="25" height="25">
 <p th:text="'Username: ' + ${user.getUsername()}"></p>
 <p th:text="'Name: ' + ${user.getFirstName()} + '' + ${user.getLastName()}"></p>
 <p th:text="'Date of Birth: ' + ${user.getDateOfBirth()}"></p>

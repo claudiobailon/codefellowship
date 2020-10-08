@@ -36,11 +36,12 @@ public class ApplicationUserController {
                                     String firstName,
                                     String lastName,
                                     Date dateOfBirth,
-                                    String bio){
+                                    String bio,
+                                    String profileImg){
 
         password = passwordEncoder.encode(password);
 
-        ApplicationUser newUser = new ApplicationUser(username, password, firstName, lastName, dateOfBirth, bio);
+        ApplicationUser newUser = new ApplicationUser(username, password, firstName, lastName, dateOfBirth, bio, profileImg);
 
         applicationUserRepository.save(newUser);
 
