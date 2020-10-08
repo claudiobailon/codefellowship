@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+<h1>We're sorry, there has been an error!</h1>
+<p th:text="'Status: ' + ${status}"></p>
+<p th:text="'Error Message: ' + ${errorMessage}"></p>
+
+</body>
+</html>
