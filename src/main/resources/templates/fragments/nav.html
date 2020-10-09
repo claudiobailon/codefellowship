@@ -3,8 +3,8 @@
         <ul><a href="/signup"><li>Sign Up</li></a></ul>
         <ul><a href="/login"><li>Login</li></a></ul>
         <ul><a href="/logout"><li>Logout</li></a></ul>
-        <p th:if="${user}" th:text="'You are currently logged in as ' + ${user.getUsername()}"></p>
-        <p th:if="${user}"><a href="/profile">My Profile</a></p>
+        <p th:if="${principal}" th:text="'You are currently logged in as ' + ${principal.getName()}"></p>
+        <p th:if="${principal}"><a href="/profile">My Profile</a></p>
     </nav>
 
 
