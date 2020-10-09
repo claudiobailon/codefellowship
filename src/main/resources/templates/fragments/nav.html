@@ -1,9 +1,10 @@
-
     <nav th:fragment="nav">
         <ul><a href="/"><li>Home</li></a></ul>
         <ul><a href="/signup"><li>Sign Up</li></a></ul>
         <ul><a href="/login"><li>Login</li></a></ul>
         <ul><a href="/logout"><li>Logout</li></a></ul>
+        <p th:if="${principal}" th:text="'You are currently logged in as ' + ${principal.getName()}"></p>
+        <p th:if="${principal}"><a href="/profile">My Profile</a></p>
     </nav>
 
 
