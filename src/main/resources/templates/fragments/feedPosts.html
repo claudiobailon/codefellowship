@@ -1,0 +1,8 @@
+
+<div th:fragment="feedPosts" th:each="follow : ${user.getFollowing()}">
+    <div th:each="feedPost : ${follow.getPosts()}">
+        <p th:text="${feedPost.getBody()}"></p>
+        <p><a th:href="'/user/' + ${follow.getId()}" th:text="${follow.getUsername()}"></a>
+            Posted this on <span th:text="${feedPost.getTime()}"></span></p>
+    </div>
+</div>

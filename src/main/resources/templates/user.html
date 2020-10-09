@@ -13,6 +13,17 @@
 <p th:text="'Date of Birth: ' + ${user.getDateOfBirth()}"></p>
 <p th:text="'Bio: ' + ${user.getBio()}"></p>
 
+<form th:if="${user.getUsername()} != ${principal.getName()} and !${principalUser.getFollowing().contains(user)}" action="/follow" method="POST">
+    <input type="hidden" name="id" th:value="${user.getId()}">
+    <input type="submit" th:value="Follow">
+</form>
+
+<form th:if="${user.getUsername()} != ${principal.getName()} and ${principalUser.getFollowing().contains(user)}" action="/unfollow" method="POST">
+    <input type="hidden" name="id" th:value="${user.getId()}">
+    <input type="submit" th:value="UnFollow">
+</form>
+<h2>Posts</h2>
+<div th:replace="fragments/post :: post"></div>
 
 </body>
 </html>

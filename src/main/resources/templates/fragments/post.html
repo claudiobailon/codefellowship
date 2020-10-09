@@ -1,5 +1,5 @@
 
 <div th:fragment="post" th:each="post : ${user.getPosts()}">
-    <p th:text="'User ' + ${user.getUsername()} + ' posted this on ' + ${post.getTime()}"></p>
     <p th:text="${post.getBody()}"></p>
+    <p th:text="${user.getUsername()} + ' posted this on ' + ${post.getTime()}"></p>
 </div>

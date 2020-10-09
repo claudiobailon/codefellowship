@@ -7,9 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -30,6 +28,17 @@ public class ApplicationUser implements UserDetails {
 
     @OneToMany(mappedBy = "applicationUser", cascade = CascadeType.ALL)
     List<Post> posts = new ArrayList<>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "follows",
+            joinColumns = {@JoinColumn(name = "follower")},
+            inverseJoinColumns = {@JoinColumn(name = "following")}
+    )
+    Set<ApplicationUser> following = new HashSet<>();
+
+    @ManyToMany(mappedBy = "following")
+    Set<ApplicationUser> followers = new HashSet<>();
 
     public ApplicationUser(){} // don't forget to do this
     public ApplicationUser(String username, String password, String firstName, String lastName, Date dateOfBirth, String bio, String profileImg){
@@ -70,6 +79,18 @@ public class ApplicationUser implements UserDetails {
     public void setProfileImg(String profileImg){this.profileImg = profileImg;}
 
     public List<Post> getPosts(){return posts;}
+
+    public Set<ApplicationUser> getFollowing() { return following;}
+
+    public Set<ApplicationUser> getFollowers() { return followers;}
+
+    public void follow(ApplicationUser userToFollow) {following.add(userToFollow);}
+    public void unFollow(ApplicationUser userToUnfollow) {following.remove(userToUnfollow);}
+
+    public void getFollower(ApplicationUser follower) {followers.add(follower);}
+    public void removeFollower(ApplicationUser follower) {followers.remove(follower);}
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){

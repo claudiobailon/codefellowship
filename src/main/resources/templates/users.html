@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:replace="fragments/nav :: nav"></div>
+<h1>Here is a list of users that you can follow!</h1>
+
+<div th:each="eachUser : ${allUsers}" th:if="${eachUser} != ${user}">
+    <img th:src="${eachUser.getProfileImg()}" alt="Profile Pic" width="25" height="25">
+    <p><span th:text="${eachUser.getUsername()}"></span><br>
+        <span th:text="'Bio: ' + ${eachUser.getBio()}"></span><br>
+        <a th:href="'/user/' + ${eachUser.getId()}" th:text="'Profile'"></a></p>
+
+    <form th:if="${eachUser.getUsername()} != ${principal.getName()} and !${principalUser.getFollowing().contains(eachUser)}" action="/follow" method="POST">
+        <input type="hidden" name="id" th:value="${eachUser.getId()}">
+        <input type="submit" th:value="Follow">
+    </form>
+
+    <form th:if="${eachUser.getUsername()} != ${principal.getName()} and ${principalUser.getFollowing().contains(eachUser)}" action="/unfollow" method="POST">
+        <input type="hidden" name="id" th:value="${eachUser.getId()}">
+        <input type="submit" th:value="UnFollow">
+    </form>
+
+</div>
+
+</body>
+</html>
