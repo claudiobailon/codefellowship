@@ -1,0 +1,8 @@
+
+<div th:fragment="feedPosts" th:each="follow : ${user.getFollowing()}">
+    <div th:each="feedPost : ${follow.getPosts()}">
+        <p>Posted by: <a th:href="'/user/' + ${follow.getId()}" th:text="${follow.getUsername()}"></a>
+            on <span th:text="${feedPost.getCreateAt()}"></span></p>
+        <p th:text="${followPost.getBody()}"></p>
+    </div>
+</div>

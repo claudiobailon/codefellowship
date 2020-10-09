@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:replace="fragments/nav :: nav"></div>
+<h1>Here is a list of users that you can follow!</h1>
+
+<div th:each="eachUser : ${allUsers}" th:if="${eachUser} != ${user}">
+    <img th:src="${eachUser.getProfileImg()}" alt="Profile Pic" width="25" height="25">
+    <p><span th:text="${eachUser.getUsername()}"></span><br>
+        <span th:text="'Bio: ' + ${eachUser.getBio()}"></span><br>
+        <a th:href="'/user/' + ${eachUser.getId()}" th:text="'Profile'"></a></p>
+</div>
+
+</body>
+</html>

@@ -20,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.sql.Date;
+import java.util.List;
 
 @Controller
 public class ApplicationUserController {
@@ -53,7 +54,6 @@ public class ApplicationUserController {
 
         applicationUserRepository.save(newUser);
 
-//        request.login(username, password);
         request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
         return new ModelAndView("redirect:/login");
 
@@ -79,5 +79,37 @@ public class ApplicationUserController {
         m.addAttribute("user",user);
         m.addAttribute("principal", principal);
         return "profile";
+    }
+
+    @GetMapping("/users")
+    public String showUsers(Model m, Principal principal) {
+        ApplicationUser user = applicationUserRepository.findByUsername(principal.getName());
+        List<ApplicationUser> allUsers = applicationUserRepository.findAll();
+        m.addAttribute("user", user);
+        m.addAttribute("principal", principal);
+        m.addAttribute("allUsers", allUsers);
+        return "users";
+    }
+
+    @PostMapping("/follow")
+    public RedirectView followUser(Principal principal, Long id) {
+        ApplicationUser userToFollow = applicationUserRepository.getOne(id);
+        ApplicationUser follower = applicationUserRepository.findByUsername(principal.getName());
+        userToFollow.getFollower(follower);
+        follower.follow(userToFollow);
+        applicationUserRepository.save(userToFollow);
+        applicationUserRepository.save(follower);
+        return new RedirectView("/user/" + id);
+    }
+
+    @PostMapping("/unfollow")
+    public RedirectView unfollowUser(Principal principal, Long id) {
+        ApplicationUser userToUnfollow = applicationUserRepository.getOne(id);
+        ApplicationUser follower = applicationUserRepository.findByUsername(principal.getName());
+        userToUnfollow.removeFollower(follower);
+        follower.unFollow(userToUnfollow);
+        applicationUserRepository.save(userToUnfollow);
+        applicationUserRepository.save(follower);
+        return new RedirectView("/user/" + id);
     }
 }
