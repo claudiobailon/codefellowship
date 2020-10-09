@@ -14,6 +14,17 @@
     <p><span th:text="${eachUser.getUsername()}"></span><br>
         <span th:text="'Bio: ' + ${eachUser.getBio()}"></span><br>
         <a th:href="'/user/' + ${eachUser.getId()}" th:text="'Profile'"></a></p>
+
+    <form th:if="${eachUser.getUsername()} != ${principal.getName()} and !${principalUser.getFollowing().contains(eachUser)}" action="/follow" method="POST">
+        <input type="hidden" name="id" th:value="${eachUser.getId()}">
+        <input type="submit" th:value="Follow">
+    </form>
+
+    <form th:if="${eachUser.getUsername()} != ${principal.getName()} and ${principalUser.getFollowing().contains(eachUser)}" action="/unfollow" method="POST">
+        <input type="hidden" name="id" th:value="${eachUser.getId()}">
+        <input type="submit" th:value="UnFollow">
+    </form>
+
 </div>
 
 </body>
